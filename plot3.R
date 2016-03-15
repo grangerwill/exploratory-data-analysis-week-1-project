@@ -1,0 +1,15 @@
+setwd("~/Work/Johns Hopkins/Data Science Specialisation/4. exploratory data analysis/Week 1")
+text_file <- "household_power_consumption.txt"
+text_to_data <- read.table(text_file, header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
+subset <- text_to_data[text_to_data$Date %in% c("1/2/2007","2/2/2007") ,]
+datetime <- strptime(paste(subset$Date, subset$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
+globalActivePower <- as.numeric(subset$Global_active_power)
+Sub_meter1 <- as.numeric(subset$Sub_metering_1)
+Sub_meter2 <- as.numeric(subset$Sub_metering_2)
+Sub_meter3 <- as.numeric(subset$Sub_metering_3)
+png("plot3.png", width=600, height=600)
+plot(datetime, Sub_meter1, type="l", ylab="Energy Submetering", xlab="")
+lines(datetime, Sub_meter2, type="l", col="red")
+lines(datetime, Sub_meter3, type="l", col="blue")
+legend("topright", c("Sub_meter1", "Sub_meter2", "Sub_meter3"), lty=1, lwd=2.5, col=c("black", "red", "blue"))
+dev.off()

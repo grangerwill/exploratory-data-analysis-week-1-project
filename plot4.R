@@ -11,16 +11,11 @@ Sub_meter2 <- as.numeric(subset$Sub_metering_2)
 Sub_meter3 <- as.numeric(subset$Sub_metering_3)
 png("plot4.png", width=600, height=600)
 par(mfrow = c(2, 2)) 
-
 plot(datetime, globalActivePower, type="l", xlab="", ylab="Global Active Power", cex=0.2)
-
 plot(datetime, voltage, type="l", xlab="datetime", ylab="Voltage")
-
 plot(datetime, Sub_meter1, type="l", ylab="Energy Submetering", xlab="")
 lines(datetime, Sub_meter2, type="l", col="red")
 lines(datetime, Sub_meter3, type="l", col="blue")
 legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=, lwd=2.5, col=c("black", "red", "blue"), bty="o")
-
 plot(datetime, globalReactivePower, type="l", xlab="datetime", ylab="Global_reactive_power")
-
 dev.off()
